@@ -12,7 +12,17 @@ router.get('/',function(req,res,next){
         }
     });
 });
-
+router.get('/:email',function(req,res,next){
+    customer.getCustomerByEmail(req.params.email,function(err,row){
+        if(err)
+        {
+            res.json(err);
+        }
+        else{
+            res.json(row);
+        }
+    });
+});
 router.post('/',function(req,res,next){
     customer.addCustomer(req.body,function(err,row){
         if(err){
@@ -31,6 +41,17 @@ router.delete('/:email',function(req,res,next){
         }
         else{
             res.json(rows);
+        }
+    });
+});
+
+router.put('/:email',function(req,res,next){
+    customer.updateCustomer(req.params.email,req.body,function(err,row){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(row);
         }
     });
 });

@@ -1,7 +1,7 @@
 var express=require('express');
 var router=express.Router();
 var user=require('../public/models/user_tbl_module');
-
+      
 router.get('/',function(req,res,next){
     user.getAllUser(function(err,rows){
         if(err){
