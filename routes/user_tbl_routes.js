@@ -2,6 +2,16 @@ var express=require('express');
 var router=express.Router();
 var user=require('../public/models/user_tbl_module');
       
+router.get('/:email',function(req,res,next){
+    user.getUserById(req.params.email,function(err,rows){
+        if(err){
+            res.json(err);
+        }
+        else{
+            res.json(rows);
+        }
+    });
+});
 router.get('/',function(req,res,next){
     user.getAllUser(function(err,rows){
         if(err){
